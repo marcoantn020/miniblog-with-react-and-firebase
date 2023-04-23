@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import PostDetails from '../../components/PostDetails/PostDetails'
 import { useFetchDocuments } from '../../hooks/useFetchDocuments'
 import styles from './Home.module.css'
@@ -7,9 +7,13 @@ import styles from './Home.module.css'
 const Home = () => {
   const [query, setQuery] = useState("")
   const { documents: posts, error, loading} = useFetchDocuments("posts")
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    if(query) {
+      return navigate(`/search?q=${query}`)
+    }
   }
 
   return (
@@ -30,6 +34,7 @@ const Home = () => {
 
     <div>
       {loading && <p>Carregando...</p>}
+      {error && <p> {error} </p>}
       { posts && posts.map((post) => (
         <PostDetails key={post.id} post={post} />
       ))}
