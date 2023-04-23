@@ -26,7 +26,12 @@ const CreatePost = () => {
     }
 
     // criar array de tags
-    const tagsArray = tags.split(",").map(tag => tag.trim().toLowerCase())
+    let tagsArray
+    if(tags.length > 0) {
+      tagsArray = tags.split(",").map(tag => tag.trim().toLowerCase())
+    } else {
+      tagsArray = ['notag']
+    }
 
     // checar todos o valores
     if(!title || !body || !image || !tags) {

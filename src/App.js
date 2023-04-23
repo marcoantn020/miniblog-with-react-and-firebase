@@ -20,6 +20,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 // import PostDetails from './components/PostDetails/PostDetails';
 import Search from './pages/Search/Search';
 import Post from './pages/Post/Post';
+import EditPost from './pages/EditPost/EditPost';
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
               <Route path='/register' element={!user ? <Register /> : <Navigate to="/" />} />
               {/* posts */}
               <Route path='/posts/create' element={user ? <CreatePost /> : <Navigate to="/login" />} />
+              <Route path='/posts/edit/:id' element={user ? <EditPost /> : <Navigate to="/login" />} />
               <Route path='/posts/:id' element={<Post />} />
               {/* dashboard */}
               <Route path='/dashboard' element={user ? <Dashboard /> : <Navigate to="/login" />} />
